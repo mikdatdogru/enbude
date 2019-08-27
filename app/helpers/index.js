@@ -1,0 +1,10 @@
+export { default as onActivate } from './onActivate';
+export { default as onBeforeQuit } from './onBeforeQuit';
+export { default as onWillQuit } from './onWillQuit';
+export { default as onBlur } from './onBlur';
+export { default as onClose } from './onClose';
+export { default as onClosed } from './onClosed';
+export { default as onDidFinishLoad } from './onDidFinishLoad';
+export { default as onWindowAllClosed } from './onWindowAllClosed';
+export { default as initShortcuts } from './shortcuts';
+export { default as initClipboard } from './clipboard';
