@@ -277,6 +277,6 @@
   "collective": {
     "url": "https://opencollective.com/ebude"
   },
-  "browserslist": "electron 1.6",
+  "browserslist": "electron 1.6"
 
 }
