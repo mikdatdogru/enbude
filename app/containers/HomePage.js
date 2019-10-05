@@ -29,6 +29,9 @@ class HomePage extends React.Component {
       this.props.setClipboard(type, data);
     });
 
+
+
+
     getWindowEvent((windowName, data) => {
       console.log(windowName, data.event);
 

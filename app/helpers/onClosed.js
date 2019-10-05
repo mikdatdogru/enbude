@@ -1,6 +1,6 @@
 const closed = mainWindow => {
+  console.log('onClosed');
   mainWindow = null;
-  console.log('closed');
 };
 
 export default closed;

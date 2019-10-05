@@ -1,6 +1,5 @@
 import { Menu, nativeImage, Tray } from 'electron';
 import path from 'path';
-import jetpack from 'fs-jetpack';
 
 export default class tray {
   constructor() {
@@ -31,12 +30,12 @@ export default class tray {
         ? tray.buildDarwinTemplate()
         : tray.buildDefaultTemplate();
 
-    const trayIconPath =
+    const trayIconPath = fileName =>
       process.env.NODE_ENV === 'production'
-        ? path.join(__dirname, `../../app.asar/resources/tray.png`)
-        : path.join(__dirname, `../../resources/tray.png`);
+        ? path.join(__dirname, `../../app.asar/resources/${fileName}`)
+        : path.join(__dirname, `../../resources/${fileName}`);
 
-    let trayIcon = nativeImage.createFromPath(trayIconPath);
+    let trayIcon = nativeImage.createFromPath(trayIconPath('tray.png'));
 
     trayIcon = trayIcon.resize({ width: 18, height: 18 });
 
@@ -44,9 +43,22 @@ export default class tray {
 
     const contextMenu = Menu.buildFromTemplate(template);
 
-    this.tray.setToolTip('enbude');
+    this.tray.setToolTip('EnBude');
     this.tray.setContextMenu(contextMenu);
 
+    // todo: icon changeer fonksiyonu yazilmali
+
+    // animation icin
+    // https://github.com/electron/electron/issues/12873
+
+    // icon changer start
+    let trayIcon2 = nativeImage.createFromPath(trayIconPath('traySingle.png'));
+    trayIcon2 = trayIcon2.resize({ width: 18, height: 18 });
+    setTimeout(() => {
+      this.tray.setImage(trayIcon2);
+    }, 5000);
+
+    // icon changer end
     return this.tray;
   }
 }

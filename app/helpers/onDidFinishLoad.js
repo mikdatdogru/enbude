@@ -1,4 +1,5 @@
 const didFinishLoad = mainWindow => {
+  console.log('onDidFinishLoad');
   if (!mainWindow) {
     throw new Error('"mainWindow" is not defined');
   }

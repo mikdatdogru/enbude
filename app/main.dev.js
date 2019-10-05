@@ -18,7 +18,7 @@ import {
   onWindowAllClosed,
   initClipboard
 } from './helpers';
-import receiver from "./helpers/receiver";
+import receiver from './helpers/receiver';
 
 export default class AppUpdater {
   constructor() {
@@ -29,7 +29,7 @@ export default class AppUpdater {
 }
 
 let mainWindow = null;
-
+let trayBuilder = null;
 config();
 
 /**
@@ -77,7 +77,8 @@ app.on('ready', async () => {
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
-  const trayBuilder = new tray();
+  // eslint-disable-next-line new-cap
+  trayBuilder = new tray();
   trayBuilder.buildTray();
 
   // eslint-disable-next-line
