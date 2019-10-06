@@ -16,6 +16,15 @@
     </script>
   </head>
   <body>
+
+
+  <!--
+    <header id="headerBar">
+      <span></span>
+    </header>
+
+    -->
+
     <div id="root"></div>
     <script>
       {
@@ -35,7 +44,11 @@
             : './dist/renderer.prod.js'
         );
 
-        document.write(scripts.map(script => `<script defer src="${script}"><\/script>`).join(''));
+        document.write(
+          scripts
+            .map(script => `<script defer src="${script}"><\/script>`)
+            .join('')
+        );
       }
     </script>
   </body>

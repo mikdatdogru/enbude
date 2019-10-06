@@ -5,7 +5,7 @@ const ImgItem = ({ img }) => {
   return (
     <div className="imgItem">
       <img src={img} alt="img" />
-      Image Data!
+      <span>Image Data</span>
     </div>
   );
 };

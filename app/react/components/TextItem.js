@@ -1,10 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const TextItem = ({ text }) => {
+  const trimmedText = text.trim();
+  let newText = trimmedText.substr(0, 20);
+
+  if (trimmedText.length > 20) {
+    newText += '...';
+  }
+
   return (
     <div className="textItem">
-      <span>{text}</span>
+      <span>{newText}</span>
     </div>
   );
 };

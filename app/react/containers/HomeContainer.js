@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getCurrentClipboard, getWindowEvent, ipcSend } from '../../utils/helper';
+import {
+  getAllClipboard,
+  getCurrentClipboard,
+  getWindowEvent,
+  ipcSend
+} from '../../utils/helper';
 import { setAllClipboard, setClipboard } from '../actions/clipboard';
-import { knex } from '../store/knexFunctions';
+import { knex } from '../../knex/knexFunctions';
 
 class HomeContainer extends React.Component {
   constructor(props) {
@@ -25,17 +30,9 @@ class HomeContainer extends React.Component {
   }
 
   componentDidMount() {
-
-    knex('picks')
-      .then(rows => {
-        this.props.setAllClipboard(rows);
-        return rows;
-      })
-      .catch(err => {
-        debugger;
-
-        return err;
-      });
+    getAllClipboard((type, data) => {
+      this.props.setAllClipboard(data);
+    });
 
     getCurrentClipboard((type, data) => {
       this.props.setClipboard(type, data);

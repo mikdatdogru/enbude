@@ -1,6 +1,6 @@
 // eslint-disable-next-line func-names
 
-const { picksSchema, optionsSchema } = require('../react/store/schema');
+const { picksSchema, optionsSchema } = require('../knex/schema');
 
 exports.up = function(knex) {
   return knex.schema

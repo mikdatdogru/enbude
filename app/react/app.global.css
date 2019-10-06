@@ -5,7 +5,6 @@
 @import '../../node_modules/@fortawesome/fontawesome-free/css/all.css';
 
 body {
-  position: relative;
   color: #d8d8d8;
   height: 100vh;
   background-color: #232c39;
@@ -14,12 +13,16 @@ body {
   overflow-y: hidden;
   margin: 0;
   padding: 0;
-  padding-top: 30px;
 }
 
-.container {
-  overflow: scroll;
-  height: 100vh;
+#headerBar {
+  height: 22px;
+}
+
+
+.area {
+  min-height: 100px;
+  max-height: 99vh;
 }
 
 h2 {
@@ -57,7 +60,7 @@ a:hover {
 }
 .clipItem:focus {
   outline: none;
-  background: red;
+  background: #000;
 }
 
 .imgItem {
@@ -67,6 +70,10 @@ a:hover {
 .imgItem img {
   width: 50px;
   max-height: 60px;
+}
+
+.imgItem span {
+  margin-left: 5px;
 }
 
 .textItem {

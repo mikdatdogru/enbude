@@ -3,6 +3,7 @@
 import electron, { app, ipcMain, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+
 import MenuBuilder from './utils/menu';
 import tray from './utils/tray';
 import config, { installExtensions } from './config';
@@ -27,6 +28,7 @@ export default class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
+let robot = require('robotjs');
 
 let mainWindow = null;
 let trayBuilder = null;
@@ -38,7 +40,6 @@ config();
 
 app.dock.hide();
 
-
 app.on('ready', async () => {
   if (
     process.env.NODE_ENV === 'development' ||
@@ -49,17 +50,18 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    frame: false,
+    frame: true,
     width: 200,
-    height: 300,
-    titleBarStyle: 'hiddenInset'
+    height: 300
+    // titleBarStyle: 'hiddenInset'
+    // titleBarStyle: 'hiddenInset'
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
-  mainWindow.webContents.on('did-finish-load', () =>
-    onDidFinishLoad(mainWindow)
-  );
+  mainWindow.webContents.on('did-finish-load', () => {
+    onDidFinishLoad(mainWindow);
+  });
 
   app.on('activate', () => onActivate(mainWindow));
   mainWindow.on('blur', () => onBlur(mainWindow));
@@ -73,7 +75,12 @@ app.on('ready', async () => {
   initClipboard(mainWindow);
 
   receiver(data => {
-    console.log(data);
+    console.log(data.data);
+    mainWindow.hide();
+    setTimeout(() => {
+      console.log('paste');
+      robot.typeString(data.data);
+    }, 2000);
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);

@@ -1,4 +1,3 @@
-import { knex } from '../store/knexFunctions';
 
 export const CLIPBOARD_SET = 'CLIPBOARD_SET';
 export const CLIPBOARD_ALL_SET = 'CLIPBOARD_ALL_SET';
@@ -16,16 +15,6 @@ export function setClipboard(type, data) {
     type,
     data
   };
-  knex('picks')
-    .insert({ ...newData })
-    .then(result => {
-      console.log(result);
-      return result;
-    })
-    .catch(err => {
-      return err;
-    });
-
   return dispatch => {
     dispatch(setClip({ ...newData }));
   };

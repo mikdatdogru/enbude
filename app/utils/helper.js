@@ -10,6 +10,11 @@ export const getCurrentClipboard = cb => {
     return cb('img', message);
   });
 };
+export const getAllClipboard = cb => {
+  ipcRenderer.on('clipboard-all-data', (event, message) => {
+    return cb('allData', message);
+  });
+};
 export const getWindowEvent = cb => {
   ipcRenderer.on('window-event', (windowName, data) => {
     return cb(windowName, data);
