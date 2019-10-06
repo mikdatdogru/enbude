@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getCurrentClipboard, getWindowEvent, ipcSend } from '../utils/helper';
+import { getCurrentClipboard, getWindowEvent, ipcSend } from '../../utils/helper';
 import { setAllClipboard, setClipboard } from '../actions/clipboard';
 import { knex } from '../store/knexFunctions';
 

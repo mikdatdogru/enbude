@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
-import App from './containers/App';
+import App from './App';
 import Home from './components/Home';
 
 export default () => (
