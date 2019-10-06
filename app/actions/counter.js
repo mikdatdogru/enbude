@@ -1,4 +1,3 @@
-
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 
@@ -27,7 +26,7 @@ export function incrementIfOdd() {
 }
 
 export function incrementAsync(delay = 1000) {
-  return (dispatch) => {
+  return dispatch => {
     setTimeout(() => {
       dispatch(increment());
     }, delay);

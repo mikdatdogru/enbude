@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './Counter.css';
 import routes from '../constants/routes';
 
-
 export default class Counter extends Component {
-
   render() {
     const {
       increment,

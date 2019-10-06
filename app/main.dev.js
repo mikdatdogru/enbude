@@ -48,9 +48,10 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    // frame: false,
+    frame: false,
     width: 200,
-    height: 300
+    height: 300,
+    titleBarStyle: 'hiddenInset'
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -80,6 +81,11 @@ app.on('ready', async () => {
   // eslint-disable-next-line new-cap
   trayBuilder = new tray();
   trayBuilder.buildTray();
+  console.log(process.env.ALWAYS_SHOW);
+  if (process.env.ALWAYS_SHOW) {
+    mainWindow.show();
+    mainWindow.focus();
+  }
 
   // eslint-disable-next-line
   new AppUpdater();

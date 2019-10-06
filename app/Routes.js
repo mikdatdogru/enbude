@@ -1,15 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 import App from './containers/App';
-import HomePage from './containers/HomePage';
+import Home from './components/Home';
 
 export default () => (
   <App>
     <Switch>
-      <Route path={'/'} component={HomePage} />
+      <Route path="/" component={Home} />
 
-      <Redirect to={'/clipList'} />
+      {/* <Redirect to={'/clipList'} /> */}
     </Switch>
   </App>
 );
-

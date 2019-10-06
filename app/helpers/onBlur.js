@@ -1,7 +1,9 @@
 const blur = mainWindow => {
   console.log('onBlur');
 
-  mainWindow.hide();
+  if (!process.env.ALWAYS_SHOW) {
+    mainWindow.hide();
+  }
 };
 
 export default blur;

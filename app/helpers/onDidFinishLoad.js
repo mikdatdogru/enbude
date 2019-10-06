@@ -3,6 +3,11 @@ const didFinishLoad = mainWindow => {
   if (!mainWindow) {
     throw new Error('"mainWindow" is not defined');
   }
+
+  if (process.env.ALWAYS_SHOW) {
+    return;
+  }
+
   if (process.env.START_MINIMIZED) {
     mainWindow.minimize();
   } else {

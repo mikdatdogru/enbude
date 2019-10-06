@@ -35,11 +35,7 @@
             : './dist/renderer.prod.js'
         );
 
-        document.write(
-          scripts
-            .map(script => `<script defer src="${script}"><\/script>`)
-            .join('')
-        );
+        document.write(scripts.map(script => `<script defer src="${script}"><\/script>`).join(''));
       }
     </script>
   </body>
