@@ -50,6 +50,7 @@ class HomeContainer extends React.Component {
         return err;
       });
 
+
     setTimeout(() => {
       // eslint-disable-next-line promise/catch-or-return
       knex('picks')
