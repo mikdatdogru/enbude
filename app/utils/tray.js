@@ -36,14 +36,12 @@ export default class tray {
         : path.join(__dirname, `../../resources/${fileName}`);
 
     let trayIcon = nativeImage.createFromPath(trayIconPath('tray.png'));
-
     trayIcon = trayIcon.resize({ width: 18, height: 18 });
 
     this.tray = new Tray(trayIcon);
-
     const contextMenu = Menu.buildFromTemplate(template);
 
-    this.tray.setToolTip('EnBude');
+    this.tray.setToolTip('Pickman');
     this.tray.setContextMenu(contextMenu);
 
     // todo: icon changeer fonksiyonu yazilmali
@@ -52,6 +50,7 @@ export default class tray {
     // https://github.com/electron/electron/issues/12873
 
     // icon changer start
+
     let trayIcon2 = nativeImage.createFromPath(trayIconPath('traySingle.png'));
     trayIcon2 = trayIcon2.resize({ width: 18, height: 18 });
     setTimeout(() => {

@@ -38,6 +38,7 @@ config();
 
 app.dock.hide();
 
+
 app.on('ready', async () => {
   if (
     process.env.NODE_ENV === 'development' ||

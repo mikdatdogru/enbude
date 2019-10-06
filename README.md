@@ -1,4 +1,4 @@
-# Enbude
+# Pickman
 
 - [Installation](#installation)
 - [Examples](#examples)

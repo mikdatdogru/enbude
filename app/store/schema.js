@@ -5,6 +5,7 @@ exports.picksSchema = table => {
     .primary();
   table.dateTime('createdAt').notNull();
   table.dateTime('updatedAt').nullable();
+  table.string('type').notNull();
   table.string('data').notNull();
 };
 exports.optionsSchema = table => {

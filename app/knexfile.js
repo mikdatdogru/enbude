@@ -1,11 +1,16 @@
-// Update with your config settings.
 const path = require('path');
 
-const dbDevPath = path.resolve(__dirname, 'store/dev.sqlite3');
-const dbProdPath = path.resolve(__dirname, 'store/prod.sqlite3');
+const filePath = fileName =>
+  process.env.NODE_ENV === 'production'
+    ? path.join(__dirname, `./app.asar/app/store/dev.sqlite3/${fileName}`)
+    : path.join(__dirname, `./store/${fileName}`);
+
+// const dbDevPath = path.resolve(__dirname, 'store/dev.sqlite3');
+// const dbProdPath = path.resolve(__dirname, 'store/prod.sqlite3');
 const dbSeedPath = path.resolve(__dirname, 'store/seeds_dev');
-console.log(dbDevPath);
-console.log(dbSeedPath);
+
+const dbDevPath = filePath('dev.sqlite3');
+const dbProdPath = filePath('prod.sqlite3');
 
 module.exports = {
   development: {

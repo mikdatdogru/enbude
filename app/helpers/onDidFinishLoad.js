@@ -1,5 +1,17 @@
+import { app } from 'electron';
+
 const didFinishLoad = mainWindow => {
+
   console.log('onDidFinishLoad');
+
+
+
+
+
+  console.log('=====');
+  console.log(app.getPath('home'));
+  console.log('=====');
+
   if (!mainWindow) {
     throw new Error('"mainWindow" is not defined');
   }

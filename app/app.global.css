@@ -53,6 +53,7 @@ a:hover {
 .clipItem {
   padding: 5px;
   border-bottom: 1px solid;
+  user-select: none;
 }
 .clipItem:focus {
   outline: none;

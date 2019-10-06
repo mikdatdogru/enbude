@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Knex from 'knex';
-import knexConf from '../knexfile';
 
 import { getCurrentClipboard, getWindowEvent, ipcSend } from '../utils/helper';
-import { setClipboard } from '../actions/clipboard';
-import { picksSchema, optionsSchema } from '../store/schema';
+import { setAllClipboard, setClipboard } from '../actions/clipboard';
+import { knex } from '../store/knexFunctions';
 
 class HomeContainer extends React.Component {
   constructor(props) {
@@ -27,43 +25,17 @@ class HomeContainer extends React.Component {
   }
 
   componentDidMount() {
-    const knex = Knex(knexConf[process.env.NODE_ENV]);
-    knex.schema
-      .hasTable('picks')
-      .then(exists => {
-        // eslint-disable-next-line promise/always-return
-        if (!exists) {
-          return knex.schema.createTable('picks', picksSchema);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        return err;
-      });
 
     knex('picks')
-      .insert({ createdAt: new Date(), data: 'rowValuessd1' })
-      .then(result => {
-        return result;
+      .then(rows => {
+        this.props.setAllClipboard(rows);
+        return rows;
       })
       .catch(err => {
+        debugger;
+
         return err;
       });
-
-
-    setTimeout(() => {
-      // eslint-disable-next-line promise/catch-or-return
-      knex('picks')
-        .then(rows => {
-          console.log(rows);
-          return rows;
-        })
-        .catch(err => {
-          debugger;
-
-          return err;
-        });
-    }, 1000);
 
     getCurrentClipboard((type, data) => {
       this.props.setClipboard(type, data);
@@ -121,7 +93,9 @@ class HomeContainer extends React.Component {
 }
 
 HomeContainer.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
+  setClipboard: PropTypes.func.isRequired,
+  setAllClipboard: PropTypes.func.isRequired
 };
 HomeContainer.defaultProps = {
   children: () => {}
@@ -131,7 +105,8 @@ const mapStateToProps = state => ({
   clipboard: state.clipboard
 });
 const mapDispatchToProps = {
-  setClipboard
+  setClipboard,
+  setAllClipboard
 };
 export default connect(
   mapStateToProps,

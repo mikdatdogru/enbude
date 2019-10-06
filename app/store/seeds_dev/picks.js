@@ -5,9 +5,9 @@ exports.seed = knex => {
     .then(() => {
       // Inserts seed entries
       return knex('picks').insert([
-        { createdAt: new Date(), data: 'rowValue1' },
-        { createdAt: new Date(), data: 'rowValue2' },
-        { createdAt: new Date(), data: 'rowValue3' }
+        { createdAt: new Date(), type: 'text', data: 'rowValue1' },
+        { createdAt: new Date(), type: 'text', data: 'rowValue2' },
+        { createdAt: new Date(), type: 'text', data: 'rowValue3' }
       ]);
     });
 };
