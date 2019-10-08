@@ -1,6 +1,6 @@
 /* eslint global-require: off */
 
-import electron, { app, ipcMain, BrowserWindow } from 'electron';
+import electron, { app, clipboard, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 
@@ -73,14 +73,20 @@ app.on('ready', async () => {
 
   initShortcuts(mainWindow);
   initClipboard(mainWindow);
-
   receiver(data => {
     console.log(data.data);
     mainWindow.hide();
+    app.hide();
+    // robot.typeString(data.data);
+    // todo base64 convert etmek lazim
+    clipboard.write({ text: data.data });
+
     setTimeout(() => {
-      console.log('paste');
-      robot.typeString(data.data);
-    }, 2000);
+      robot.keyToggle('v', 'down', 'command');
+      setTimeout(() => {
+        robot.keyToggle('v', 'up', 'command');
+      }, 100);
+    }, 200);
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
